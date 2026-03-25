@@ -68,9 +68,12 @@ function wlf_check_payment_rest($request) {
         if (!is_wp_error($response)) {
             $body = json_decode(wp_remote_retrieve_body($response), true);
             if (!empty($body['settled']) && $body['settled'] === true) {
+                $preimage = !empty($body['preimage']) ? $body['preimage'] : 'N/A';
+                $order->update_meta_data('_wlf_preimage', $preimage);
+                $order->save();
                 $order->payment_complete();
-                $order->add_order_note('⚡ Pago Lightning confirmado vía Fedi verify.');
-                return new WP_REST_Response(['paid' => true, 'status' => 'processing']);
+                $order->add_order_note("⚡ Pago Lightning confirmado (LUD-21).\nPreimage: {$preimage}");
+                return new WP_REST_Response(['paid' => true, 'status' => 'processing', 'preimage' => $preimage]);
             }
         }
     }
