@@ -52,7 +52,7 @@ class WLF_Exchange {
         $cached = get_transient(self::$cache_key . '_' . $currency);
         if ($cached !== false) return (float) $cached;
 
-        $url = "https://api.yadio.io/rate/{$currency}";
+        $url = "https://api.yadio.io/exrates/{$currency}";
         $response = wp_remote_get($url, ['timeout' => 10]);
 
         if (is_wp_error($response)) {
@@ -62,11 +62,23 @@ class WLF_Exchange {
 
         $body = json_decode(wp_remote_retrieve_body($response), true);
 
-        if (!isset($body['rate'])) {
+        if (!isset($body['BTC'])) {
+            // Fallback: try /rate/ endpoint
+            $url2 = "https://api.yadio.io/rate/{$currency}";
+            $response2 = wp_remote_get($url2, ['timeout' => 10]);
+            if (!is_wp_error($response2)) {
+                $body2 = json_decode(wp_remote_retrieve_body($response2), true);
+                if (isset($body2['btc'])) {
+                    $rate = (float) $body2['btc'];
+                    set_transient(self::$cache_key . '_' . $currency, $rate, self::$cache_ttl);
+                    update_option('wlf_last_rate_' . $currency, $rate);
+                    return $rate;
+                }
+            }
             return self::get_rate_fallback($currency);
         }
 
-        $rate = (float) $body['rate'];
+        $rate = (float) $body['BTC'];
         set_transient(self::$cache_key . '_' . $currency, $rate, self::$cache_ttl);
 
         // Also save as fallback
