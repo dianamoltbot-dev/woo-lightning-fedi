@@ -56,8 +56,26 @@ function wlf_check_payment_rest($request) {
         return new WP_REST_Response(['paid' => false, 'error' => 'Order not found'], 404);
     }
 
-    $paid = $order->get_status() === 'processing' || $order->get_status() === 'completed';
-    return new WP_REST_Response(['paid' => $paid, 'status' => $order->get_status()]);
+    // Already marked as paid
+    if (in_array($order->get_status(), ['processing', 'completed'])) {
+        return new WP_REST_Response(['paid' => true, 'status' => $order->get_status()]);
+    }
+
+    // Check via Fedi verify URL
+    $verify_url = $order->get_meta('_wlf_verify_url');
+    if ($verify_url) {
+        $response = wp_remote_get($verify_url, ['timeout' => 10]);
+        if (!is_wp_error($response)) {
+            $body = json_decode(wp_remote_retrieve_body($response), true);
+            if (!empty($body['settled']) && $body['settled'] === true) {
+                $order->payment_complete();
+                $order->add_order_note('⚡ Pago Lightning confirmado vía Fedi verify.');
+                return new WP_REST_Response(['paid' => true, 'status' => 'processing']);
+            }
+        }
+    }
+
+    return new WP_REST_Response(['paid' => false, 'status' => $order->get_status()]);
 }
 
 // Enqueue frontend assets

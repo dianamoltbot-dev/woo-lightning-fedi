@@ -138,6 +138,9 @@ class WLF_Gateway extends WC_Payment_Gateway {
         $order->update_meta_data('_wlf_msats', $msats);
         $order->update_meta_data('_wlf_rate', WLF_Exchange::get_rate($this->currency));
         $order->update_meta_data('_wlf_created', time());
+        if (!empty($invoice_data['verify'])) {
+            $order->update_meta_data('_wlf_verify_url', $invoice_data['verify']);
+        }
         $order->update_status('pending', 'Esperando pago Lightning ⚡');
         $order->save();
 
