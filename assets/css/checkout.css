@@ -1,0 +1,201 @@
+/* WooCommerce Lightning Fedi — Checkout Styles */
+
+.wlf-payment-box {
+    max-width: 420px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #1a1a2e;
+    border-radius: 16px;
+    text-align: center;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.wlf-payment-box h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    color: #f7931a;
+}
+
+.wlf-amount {
+    margin: 0 0 24px;
+    font-size: 20px;
+}
+
+.wlf-amount strong {
+    color: #f7931a;
+    font-size: 28px;
+}
+
+.wlf-fiat {
+    display: block;
+    font-size: 14px;
+    color: #9ca3af;
+    margin-top: 4px;
+}
+
+.wlf-qr {
+    margin: 0 auto 20px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.wlf-qr img {
+    width: 250px;
+    height: 250px;
+    display: block;
+}
+
+.wlf-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.wlf-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.wlf-btn-wallet {
+    background: #f7931a;
+    color: #fff;
+}
+
+.wlf-btn-wallet:hover {
+    background: #e8850f;
+    color: #fff;
+}
+
+.wlf-btn-copy {
+    background: transparent;
+    color: #f7931a;
+    border: 2px solid #f7931a;
+}
+
+.wlf-btn-copy:hover {
+    background: rgba(247, 147, 26, 0.1);
+}
+
+.wlf-status {
+    padding: 16px;
+    background: rgba(247, 147, 26, 0.1);
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.wlf-status p {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: #d1d5db;
+}
+
+.wlf-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(247, 147, 26, 0.3);
+    border-top-color: #f7931a;
+    border-radius: 50%;
+    animation: wlf-spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes wlf-spin {
+    to { transform: rotate(360deg); }
+}
+
+.wlf-expiry {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.wlf-paid {
+    max-width: 420px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #0f3d0f;
+    border-radius: 16px;
+    text-align: center;
+    color: #fff;
+}
+
+.wlf-paid h2 {
+    color: #4ade80;
+    margin: 0 0 8px;
+}
+
+/* USDT via Boltz */
+.wlf-usdt-separator {
+    margin: 16px 0;
+    text-align: center;
+    position: relative;
+}
+
+.wlf-usdt-separator::before,
+.wlf-usdt-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.wlf-usdt-separator::before { left: 0; }
+.wlf-usdt-separator::after { right: 0; }
+
+.wlf-usdt-separator span {
+    font-size: 13px;
+    color: #9ca3af;
+    padding: 0 12px;
+}
+
+.wlf-btn-usdt {
+    background: #26a17b;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.wlf-btn-usdt:hover {
+    background: #1e8e6b;
+    color: #fff;
+}
+
+.wlf-usdt-info {
+    font-size: 11px;
+    color: #6b7280;
+    margin: 8px 0 0;
+    line-height: 1.4;
+}
+
+/* Dark theme compat */
+@media (prefers-color-scheme: light) {
+    .wlf-payment-box {
+        background: #f8f9fa;
+        color: #1a1a2e;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    .wlf-status {
+        background: rgba(247, 147, 26, 0.05);
+    }
+    .wlf-status p {
+        color: #4b5563;
+    }
+    .wlf-expiry {
+        color: #9ca3af;
+    }
+}
