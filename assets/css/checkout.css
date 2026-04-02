@@ -136,50 +136,82 @@
     margin: 0 0 8px;
 }
 
-/* USDT via Boltz */
-.wlf-usdt-separator {
-    margin: 16px 0;
-    text-align: center;
-    position: relative;
+/* USDT via Boltz — standalone gateway */
+.wlf-usdt-box h2 {
+    color: #26a17b;
 }
 
-.wlf-usdt-separator::before,
-.wlf-usdt-separator::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 35%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.wlf-usdt-separator::before { left: 0; }
-.wlf-usdt-separator::after { right: 0; }
-
-.wlf-usdt-separator span {
-    font-size: 13px;
-    color: #9ca3af;
-    padding: 0 12px;
-}
-
-.wlf-btn-usdt {
+.wlf-btn-usdt-main {
     background: #26a17b;
     color: #fff;
     width: 100%;
     text-align: center;
     display: block;
+    font-size: 18px;
+    padding: 16px 24px;
 }
 
-.wlf-btn-usdt:hover {
+.wlf-btn-usdt-main:hover {
     background: #1e8e6b;
     color: #fff;
+}
+
+.wlf-usdt-desc {
+    font-size: 14px;
+    color: #d1d5db;
+    margin-bottom: 20px;
+}
+
+.wlf-usdt-steps {
+    text-align: left;
+    margin: 20px 0;
+    padding: 16px;
+    background: rgba(38, 161, 123, 0.1);
+    border-radius: 8px;
+}
+
+.wlf-usdt-steps p {
+    margin: 0 0 8px;
+    color: #26a17b;
+    font-size: 14px;
+}
+
+.wlf-usdt-steps ol {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #d1d5db;
+}
+
+.wlf-usdt-steps li {
+    margin-bottom: 4px;
+}
+
+.wlf-fallback {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.wlf-fallback summary {
+    padding: 8px;
 }
 
 .wlf-usdt-info {
     font-size: 11px;
     color: #6b7280;
-    margin: 8px 0 0;
+    margin: 12px 0 0;
     line-height: 1.4;
+}
+
+.wlf-usdt-info a {
+    color: #26a17b;
+    text-decoration: none;
+}
+
+.wlf-usdt-info a:hover {
+    text-decoration: underline;
 }
 
 /* Dark theme compat */

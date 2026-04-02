@@ -86,26 +86,7 @@ class WLF_Gateway extends WC_Payment_Gateway {
                 'description' => 'Cada cuántos segundos verificar si se pagó.',
                 'default'     => '3',
             ],
-            'boltz_usdt_enabled' => [
-                'title'   => 'Habilitar pago con USDT (vía Boltz)',
-                'type'    => 'checkbox',
-                'label'   => 'Mostrar opción de pagar con USDT usando Boltz Exchange',
-                'description' => 'El cliente puede pagar con USDT (cualquier red soportada). Boltz convierte a Lightning automáticamente. Non-custodial.',
-                'default' => 'yes',
-            ],
-            'boltz_usdt_default_network' => [
-                'title'       => 'Red USDT por defecto',
-                'type'        => 'select',
-                'description' => 'Red que se pre-selecciona en Boltz. El cliente puede cambiarla.',
-                'default'     => 'USDT0-ETH',
-                'options'     => [
-                    'USDT0-ETH'   => 'Ethereum',
-                    'USDT0-OP'    => 'Optimism',
-                    'USDT0-POL'   => 'Polygon',
-                    'USDT0-TRON'  => 'Tron',
-                    'USDT0-SOL'   => 'Solana',
-                ],
-            ],
+
         ];
     }
 
@@ -213,20 +194,6 @@ class WLF_Gateway extends WC_Payment_Gateway {
                     Copiar Invoice
                 </button>
             </div>
-            <?php if ($this->get_option('boltz_usdt_enabled', 'yes') === 'yes') :
-                $usdt_network = $this->get_option('boltz_usdt_default_network', 'USDT0-ETH');
-                $boltz_url = 'https://boltz.exchange/?sendAsset=' . urlencode($usdt_network) . '&receiveAsset=LN&destination=' . urlencode($invoice);
-            ?>
-            <div class="wlf-usdt-separator">
-                <span>o pagá con</span>
-            </div>
-            <div class="wlf-actions">
-                <a href="<?php echo esc_url($boltz_url); ?>" target="_blank" rel="noopener" class="wlf-btn wlf-btn-usdt">
-                    💵 Pagar con USDT (vía Boltz)
-                </a>
-            </div>
-            <p class="wlf-usdt-info">Se abre Boltz Exchange. Enviás USDT y se convierte a Lightning automáticamente. Sin KYC, non-custodial.</p>
-            <?php endif; ?>
             <div class="wlf-status" id="wlf-status">
                 <div class="wlf-spinner"></div>
                 <p>Esperando pago... Se verifica automáticamente.</p>

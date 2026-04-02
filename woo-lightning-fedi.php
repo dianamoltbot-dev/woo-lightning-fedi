@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Lightning Gateway (Fedi/LNURL)
  * Plugin URI: https://github.com/dianamoltbot-dev/woo-lightning-fedi
  * Description: Accept Bitcoin Lightning payments via LNURL-pay or Lightning Address. Built for Fedi federations.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Diana × Spark101 Tech
  * Author URI: https://www.spark101.tech
  * License: MIT
@@ -14,7 +14,7 @@
 
 defined('ABSPATH') || exit;
 
-define('WLF_VERSION', '1.1.0');
+define('WLF_VERSION', '1.2.0');
 define('WLF_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WLF_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -30,11 +30,13 @@ function wlf_init_gateway() {
     }
 
     require_once WLF_PLUGIN_DIR . 'includes/class-wlf-gateway.php';
+    require_once WLF_PLUGIN_DIR . 'includes/class-wlf-gateway-usdt.php';
     require_once WLF_PLUGIN_DIR . 'includes/class-wlf-lnurl.php';
     require_once WLF_PLUGIN_DIR . 'includes/class-wlf-exchange.php';
 
     add_filter('woocommerce_payment_gateways', function($gateways) {
         $gateways[] = 'WLF_Gateway';
+        $gateways[] = 'WLF_Gateway_USDT';
         return $gateways;
     });
 }
