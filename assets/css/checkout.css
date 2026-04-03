@@ -156,35 +156,85 @@
     color: #fff;
 }
 
-.wlf-usdt-desc {
-    font-size: 14px;
-    color: #d1d5db;
-    margin-bottom: 20px;
-}
-
-.wlf-usdt-steps {
-    text-align: left;
+/* Network selector */
+.wlf-network-selector {
     margin: 20px 0;
-    padding: 16px;
-    background: rgba(38, 161, 123, 0.1);
+}
+
+.wlf-network-label {
+    margin: 0 0 12px;
+    font-size: 15px;
+    color: #e5e7eb;
+}
+
+.wlf-network-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.wlf-net-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-}
-
-.wlf-usdt-steps p {
-    margin: 0 0 8px;
-    color: #26a17b;
-    font-size: 14px;
-}
-
-.wlf-usdt-steps ol {
-    margin: 0;
-    padding-left: 20px;
-    font-size: 13px;
     color: #d1d5db;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.wlf-usdt-steps li {
-    margin-bottom: 4px;
+.wlf-net-btn:hover {
+    background: rgba(38, 161, 123, 0.15);
+    border-color: rgba(38, 161, 123, 0.4);
+    color: #fff;
+}
+
+.wlf-net-btn.wlf-net-selected {
+    background: rgba(38, 161, 123, 0.2);
+    border-color: #26a17b;
+    color: #fff;
+    box-shadow: 0 0 0 1px #26a17b;
+}
+
+.wlf-net-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.wlf-net-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wlf-more-networks {
+    margin-bottom: 12px;
+}
+
+.wlf-more-networks summary {
+    font-size: 13px;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.wlf-more-networks summary:hover {
+    color: #26a17b;
+}
+
+.wlf-gas-info {
+    font-size: 12px;
+    color: #9ca3af;
+    margin: 8px 0 0;
+}
+
+.wlf-gas-info strong {
+    color: #26a17b;
 }
 
 .wlf-fallback {

@@ -35,8 +35,8 @@ function wlf_init_gateway() {
     require_once WLF_PLUGIN_DIR . 'includes/class-wlf-exchange.php';
 
     add_filter('woocommerce_payment_gateways', function($gateways) {
-        $gateways[] = 'WLF_Gateway';
-        $gateways[] = 'WLF_Gateway_USDT';
+        $gateways[] = 'WLF_Gateway_USDT';  // USDT first
+        $gateways[] = 'WLF_Gateway';       // Lightning second
         return $gateways;
     });
 }
